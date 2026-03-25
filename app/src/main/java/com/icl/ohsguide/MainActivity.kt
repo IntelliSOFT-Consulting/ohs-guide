@@ -1,5 +1,6 @@
 package com.icl.ohsguide
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -9,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.button.MaterialButton
+import com.icl.ohsguide.auth.RegisterActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
         val submitButton = findViewById<Button>(R.id.signin)
         val username = findViewById<EditText>(R.id.username)
-        val password = findViewById<EditText>(R.id.password)
+        val password = findViewById<EditText>(R.id.passwordInput)
         val rememberMe = findViewById<Switch>(R.id.switch1)
         submitButton.setOnClickListener {
             val usernameText = username.text.toString()
@@ -35,6 +38,12 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Welcome back, $usernameText", Toast.LENGTH_SHORT).show()
             } else
                 Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
+        }
+        val goToRegisterButton = findViewById<MaterialButton>(R.id.goToRegisterButton)
+
+        goToRegisterButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 }
